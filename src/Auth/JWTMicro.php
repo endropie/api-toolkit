@@ -1,6 +1,6 @@
 <?php
 
-namespace Endropie\ApiTool\Auth;
+namespace Endropie\ApiToolkit\Auth;
 
 use App\Models\User;
 use Throwable;

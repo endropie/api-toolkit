@@ -1,9 +1,9 @@
 <?php
 
-namespace Endropie\ApiTool\Providers;
+namespace Endropie\ApiToolkit\Providers;
 
 use Illuminate\Support\ServiceProvider;
-use Endropie\ApiTool\Auth\JWTMicro;
+use Endropie\ApiToolkit\Auth\JWTMicro;
 
 class JWTMicroAuthServiceProvider extends ServiceProvider
 {

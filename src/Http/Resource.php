@@ -1,6 +1,6 @@
 <?php
 
-namespace Endropie\ApiTool\Http;
+namespace Endropie\ApiToolkit\Http;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 

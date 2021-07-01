@@ -1,6 +1,6 @@
 <?php
 
-namespace Endropie\ApiTool\Support;
+namespace Endropie\ApiToolkit\Support;
 
 class MicroService
 {

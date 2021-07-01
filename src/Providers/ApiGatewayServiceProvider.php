@@ -1,6 +1,6 @@
 <?php
 
-namespace Endropie\ApiTool\Providers;
+namespace Endropie\ApiToolkit\Providers;
 
 use Illuminate\Support\ServiceProvider;
 
@@ -18,7 +18,7 @@ class ApiGatewayServiceProvider extends ServiceProvider
         });
 
         $this->app->singleton('microservice', function ($app) {
-            return new \Endropie\ApiTool\Support\MicroService($app);
+            return new \Endropie\ApiToolkit\Support\MicroService($app);
         });
     }
 

@@ -1,8 +1,8 @@
 <?php
 
-namespace Endropie\ApiTool\Traits;
+namespace Endropie\ApiToolkit\Traits;
 
-use Endropie\ApiTool\Http\Filter;
+use Endropie\ApiToolkit\Http\Filter;
 
 trait HasFilterable
 {

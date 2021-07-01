@@ -1,8 +1,8 @@
 <?php
 
-namespace Endropie\ApiTool\Support;
+namespace Endropie\ApiToolkit\Support;
 
-use Endropie\ApiTool\Http\Filter;
+use Endropie\ApiToolkit\Http\Filter;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Stringable;
 
