@@ -1,0 +1,17 @@
+{
+    "name": "endropie/api-tool",
+    "type": "library",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Endropie\\ApiTool\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "endropie",
+            "email": "hendrowibo@msn.com"
+        }
+    ],
+    "require": {}
+}
