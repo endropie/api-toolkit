@@ -14,8 +14,13 @@ trait HasFilterable
         return $filter->apply($query);
     }
 
-    public function scopelimitation($query, Filter $limit)
+    public function scopePagination($query, $limit = 10)
     {
-        return $query->limit($this->request->get('limit', 20));
+        return $query->paginate(request()->get('limit', $limit));
+    }
+
+    public function scopelimitation($query, $limit = 10)
+    {
+        return $query->limit(request()->get('limit', $limit))->offset(request()->get('offset', 0))->get();
     }
 }
