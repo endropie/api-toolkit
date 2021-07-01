@@ -63,9 +63,10 @@ class Resource extends JsonResource
         if (count($this->default) && in_array($name, $this->default)) return true;
 
         if ($values = request()->get($query)) {
+
             if (gettype($values) == "string") $values = explode(',', $values);
 
-            if (in_array($this->prefix . ".*", $values)) return true;
+            if (in_array($this->prefix ? ($this->prefix . ".*") : "*", $values)) return true;
 
             return in_array($prename, $values);
         }
