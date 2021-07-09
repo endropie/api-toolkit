@@ -40,10 +40,6 @@ class JWTMicro implements UserProvider
 
         return tap(new User(), function ($user) use ($credentials) {
             $user->id = $credentials;
-            $payload = JWTAuth::parseToken()->getPayload();
-            // $user->ability = $payload['ability'];
-
-            dd('auth', $payload, auth());
         });
     }
 }

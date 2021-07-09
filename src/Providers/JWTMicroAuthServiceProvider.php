@@ -14,16 +14,16 @@ class JWTMicroAuthServiceProvider extends ServiceProvider
      */
     public function register()
     {
-
         $this->app['auth']->provider(
             'jwt-micro-provider',
             function ($app, array $config) {
                 return new JWTMicro();
             }
         );
-        Config::set('auth.guards.api.driver', 'jwt');
-        Config::set('auth.guards.api.provider', 'micro');
-        Config::set('auth.providers.micro.driver', 'jwt-micro-provider');
+
+        $this->app['config']->set('auth.guards.api.driver', 'jwt');
+        $this->app['config']->set('auth.guards.api.provider', 'micro');
+        $this->app['config']->set('auth.providers.micro.driver', 'jwt-micro-provider');
     }
 
     /**
@@ -33,8 +33,6 @@ class JWTMicroAuthServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        // app('config')->set('auth.guards.api.driver', 'jwt');
-        // app('config')->set('auth.guards.api.provider', 'micro');
-        // app('config')->set('auth.providers.micro.driver', 'jwt-micro-provider');
+        //
     }
 }
