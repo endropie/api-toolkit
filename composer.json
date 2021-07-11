@@ -1,6 +1,6 @@
 {
   "name": "endropie/api-toolkit",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "type": "library",
   "license": "MIT",
   "autoload": {
@@ -14,5 +14,8 @@
       "email": "hendrowibo@msn.com"
     }
   ],
-  "require": {}
+  "require": {
+    "tymon/jwt-auth": "^1.0",
+    "guzzlehttp/guzzle": "^7.3"
+  }
 }
