@@ -1,12 +1,11 @@
 <?php
 
-namespace Endropie\ApiToolkit\Auth;
+namespace Endropie\ApiToolkit\Providers\Auth\Drivers;
 
 use App\Models\User;
 use Throwable;
 use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Contracts\Auth\UserProvider;
-use Tymon\JWTAuth\Facades\JWTAuth;
 
 class JWTMicro implements UserProvider
 {

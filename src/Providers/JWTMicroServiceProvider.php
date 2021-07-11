@@ -3,9 +3,9 @@
 namespace Endropie\ApiToolkit\Providers;
 
 use Illuminate\Support\ServiceProvider;
-use Endropie\ApiToolkit\Auth\JWTMicro;
+use Endropie\ApiToolkit\Providers\Auth\Drivers\JWTMicro;
 
-class JWTMicroAuthServiceProvider extends ServiceProvider
+class JWTMicroServiceProvider extends ServiceProvider
 {
     /**
      * Register any application services.
