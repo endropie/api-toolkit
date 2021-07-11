@@ -14,6 +14,7 @@ class JWTPartnerServiceProvider extends ServiceProvider
      */
     public function register()
     {
+        $this->app->register(\Tymon\JWTAuth\Providers\LumenServiceProvider::class);
 
         $this->app->singleton('http', 'Illuminate\Http\Client\Factory');
 

@@ -14,6 +14,8 @@ class JWTMicroServiceProvider extends ServiceProvider
      */
     public function register()
     {
+        $this->app->register(\Tymon\JWTAuth\Providers\LumenServiceProvider::class);
+
         $this->app['auth']->provider(
             'jwt-micro-provider',
             function ($app, array $config) {
