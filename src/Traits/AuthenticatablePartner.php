@@ -31,13 +31,13 @@ trait AuthenticatablePartner
 
     public function getPartnerResponse()
     {
-        $url = config('auth.partner.http.url');
-        $method = config('auth.partner.http.method', 'GET');
-        $headers = config('auth.partner.http.headers', []);
+        $url = config('auth.partner.retrieve.url');
+        $method = config('auth.partner.retrieve.method', 'GET');
+        $headers = config('auth.partner.retrieve.headers', []);
 
-        if (!$url) abort(500, 'Partner url is not undefined. Please set config [auth.partner.http.url]');
+        if (!$url) abort(500, 'Partner url is not undefined. Please set config [auth.partner.retrieve.url]');
 
-        $response = config('auth.partner.http.withToken')
+        $response = config('auth.partner.retrieve.withToken')
             ? app('http')->withHeaders($headers)->withToken(request('token'))->{strtolower($method)}($url)
             : app('http')->withHeaders($headers)->{strtolower($method)}($url);
 

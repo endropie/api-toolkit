@@ -30,12 +30,12 @@ class JWTPartnerServiceProvider extends ServiceProvider
         $this->app['config']->set('auth.providers.partner.driver', 'jwt-partner-provider');
 
         $this->app['config']->set('auth.partner.router.prefix', 'auth-partner');
-        $this->app['config']->set('auth.partner.http.method', 'post');
-        $this->app['config']->set('auth.partner.http.headers', ['accept' => 'Application/json']);
-        $this->app['config']->set('auth.partner.http.withToken', true);
+        $this->app['config']->set('auth.partner.retrieve.method', 'post');
+        $this->app['config']->set('auth.partner.retrieve.headers', ['accept' => 'Application/json']);
+        $this->app['config']->set('auth.partner.retrieve.withToken', true);
 
-        ## Please set config [auth.partner.http.url] in AppServiceProvider
-        ## $this->app['config']->set('auth.partner.http.url', 'http://example.com/auth/user');
+        ## Please set config [auth.partner.retrieve.url] in AppServiceProvider
+        ## $this->app['config']->set('auth.partner.retrieve.url', 'http://example.com/auth/user');
     }
 
     /**
