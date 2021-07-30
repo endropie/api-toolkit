@@ -34,21 +34,25 @@ class Resource extends JsonResource
                 if ($callback != null) $callback($value);
             }
         }
+
         return $this->mergeWhen($condition, [$name => $value]);
     }
 
     protected function mergeAttributes(array $visible = [], $callback = null)
     {
-        $attributes = $this->resource->fresh()->getAttributes();
+        $attributes = $this->resource->fresh()->toArray();
 
         if ($callback != null) $attributes = $callback($attributes);
 
-        foreach ($attributes as $name => $value) {
-            $condition = $this->hasQueryParameter(static::QUERY_FIELDS_NAME, $name);
+        if ($this->prefix) {
+            foreach ($attributes as $name => $value) {
+                $condition = $this->resource->getKeyName() === $name
+                    ?: $this->hasQueryParameter(static::QUERY_FIELDS_NAME, $name);
 
-            $attributes[$name] = in_array($name, $visible)
-                ? $value
-                : $this->when($condition, $value);
+                $attributes[$name] = in_array($name, $visible)
+                    ? $value
+                    : $this->when($condition, $value);
+            }
         }
 
         return $this->mergeWhen(true, $attributes);
