@@ -24,7 +24,7 @@ class Resource extends JsonResource
     {
         $condition = $this->hasQueryParameter(static::QUERY_INCLUDES_NAME, $name);
 
-        if ($condition) {
+        if ($condition && $value) {
             $value = value($value);
             if (!property_exists($value, 'collects')) {
                 $value->prefix($name);
