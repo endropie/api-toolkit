@@ -26,11 +26,12 @@ class Resource extends JsonResource
 
         if ($condition && $value) {
             $value = value($value);
+            $prefix = $this->prefix ? "$this->prefix.$name" : $name;
             if (!property_exists($value, 'collects')) {
-                $value->prefix($name);
+                $value->prefix($prefix);
                 if ($callback != null) $callback($value);
             } else {
-                $value->each->prefix($name);
+                $value->each->prefix($prefix);
                 if ($callback != null) $callback($value);
             }
         }
