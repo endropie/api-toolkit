@@ -67,6 +67,15 @@ class Filter
     {
         if (!strlen($value)) return $this->builder;
         $columns = $this->manager->getColumns();
+        $searchFields = request('search-fields', []);
+
+        if (gettype($searchFields) == 'string') {
+            $searchFields = explode(',', $searchFields);
+        }
+
+        if (count($searchFields)) {
+            $columns = array_intersect($columns, $searchFields);
+        }
 
         $separator = substr_count($value, '|') > 0 ? '|' : ' ';
         $keywords = gettype($value) == 'array'
