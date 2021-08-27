@@ -5,6 +5,7 @@ namespace Endropie\ApiToolkit\Http;
 use Endropie\ApiToolkit\Support\Filterable;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
+use Illuminate\Support\Stringable;
 
 class Filter
 {
@@ -69,26 +70,31 @@ class Filter
         $columns = $this->manager->getColumns();
         $searchFields = request('search-fields', []);
 
-        if (gettype($searchFields) == 'string') {
+        if (gettype($searchFields) == 'string' && strlen($searchFields)) {
             $searchFields = explode(',', $searchFields);
         }
 
-        if (count($searchFields)) {
-            $columns = array_intersect($columns, $searchFields);
-        }
+        if (count($searchFields) == 0) $searchFields = $columns;
 
         $separator = substr_count($value, '|') > 0 ? '|' : ' ';
         $keywords = gettype($value) == 'array'
             ? array($value)
             : explode($separator, (string) $value);
 
-        return $this->builder->where(function ($query) use ($columns, $keywords) {
-            $mode = $this->request->has('searchexpand') ? 'orWher' : 'where';
+        return $this->builder->where(function ($query) use ($columns, $searchFields, $keywords) {
+            $mode = $this->request->has('search-expand') ? 'orWhere' : 'where';
             foreach ($keywords as $keyword) {
                 if (strlen($keyword)) {
-                    $query->{$mode}(function ($query) use ($columns, $keyword) {
-                        foreach ($columns as $column) {
-                            $query->orWhere($column, 'like', '%' . $keyword . '%');
+                    $query->{$mode}(function ($query) use ($columns, $searchFields, $keyword) {
+                        foreach ($searchFields as $field) {
+                            $method = (string) (new Stringable('search_' . $field))->camel();
+                            if (method_exists($this, $method)) {
+                                $query->orWhere(function ($q) use ($method, $keyword) {
+                                    $this->{$method}($q, $keyword);
+                                });
+                            } elseif (in_array($field, $columns)) {
+                                $query->orWhere($field, 'like', '%' . $keyword . '%');
+                            }
                         }
                     });
                 }
